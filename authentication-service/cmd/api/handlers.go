@@ -10,7 +10,7 @@ import (
 
 func (app *Config) Authenticate(w http.ResponseWriter, r *http.Request) {
 	var requestPayload struct {
-		Email    string `json:"email`
+		Email    string `json:"email"`
 		Password string `json:"password"`
 	}
 
@@ -36,7 +36,8 @@ func (app *Config) Authenticate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// log authentication
-	err = app.logRequest("authentication", fmt.Sprintf("%s logged in!", user.Email))
+	// err = app.logRequest("authentication", fmt.Sprintf("%s logged in!", user.Email))
+	err = app.logRequestBroker("authentication", fmt.Sprintf("%s logged in!", user.Email))
 	if err != nil {
 		app.errorJSON(w, err)
 		return
@@ -65,6 +66,45 @@ func (app *Config) logRequest(name, data string) error {
 	logServiceUrl := "http://logger-service/log"
 
 	request, err := http.NewRequest("POST", logServiceUrl, bytes.NewBuffer(jsonData))
+	if err != nil {
+		return err
+	}
+
+	client := &http.Client{}
+	_, err = client.Do(request)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+type Log struct {
+	Name string `json:"name"`
+	Data string `json:"data"`
+}
+
+type LogRequest struct {
+	Action string `json:"action"`
+	Log    Log    `json:"log"`
+}
+
+func (app *Config) logRequestBroker(name, data string) error {
+
+	logRequest := LogRequest{
+		Action: "log",
+		Log: Log{
+			Name: name,
+			Data: data,
+		},
+	}
+
+	jsonData, _ := json.MarshalIndent(logRequest, "", "\t")
+	logServiceUrl := "http://broker-service/handle"
+
+	request, err := http.NewRequest("POST", logServiceUrl, bytes.NewBuffer(jsonData))
+
 	if err != nil {
 		return err
 	}
