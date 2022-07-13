@@ -1,0 +1,8 @@
+.idea/
+project/db-data
+
+# Builds
+authentication-service/authApp
+broker-service/brokerApp
+front-end/frontApp
+logger-service/loggerServiceApp
