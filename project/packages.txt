@@ -1,0 +1,21 @@
+# Starting a Project
+go mod init {PROJECT}
+
+# Rabbitmq Driver
+go get github.com/rabbitmq/amqp091-go
+
+# Install protobuf
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27
+
+# Mongo
+go get go.mongodb.org/mongo-driver/mongo
+go get go.mongodb.org/mongo-driver/mongo/options
+
+# Routes package
+go get github.com/go-chi/chi/v5
+go get github.com/go-chi/chi/middleware
+go get github.com/go-chi/cors
+
+# Email
+go get github.com/vanng822/go-premailer/premailer
+go get github.com/xhit/go-simple-mail/v2
