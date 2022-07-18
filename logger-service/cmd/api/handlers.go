@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"log-service/data"
 	"net/http"
 )
@@ -11,6 +12,8 @@ type JSONPayload struct {
 }
 
 func (app *Config) WriteLog(w http.ResponseWriter, r *http.Request) {
+
+	log.Println("Writing log...")
 
 	// Read the json in var
 	var requestPayload JSONPayload

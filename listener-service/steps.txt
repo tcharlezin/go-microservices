@@ -1,0 +1,5 @@
+# Start Project
+go mod init listner-service
+
+# Rabbitmq
+go get github.com/rabbitmq/amqp091-go
