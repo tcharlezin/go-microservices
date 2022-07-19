@@ -2,8 +2,8 @@
 
 ## Frontend
 ```
-docker build -f frontend-service.dockerfile -t tcharlezin/front-end:1.0.0 .
-docker push tcharlezin/front-end:1.0.0
+docker build -f frontend-service.dockerfile -t tcharlezin/front-end:1.0.1 .
+docker push tcharlezin/front-end:1.0.1
 ```
 
 ## Logger
