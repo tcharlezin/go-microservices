@@ -2,38 +2,44 @@
 
 ## Frontend
 ```
-docker build -f frontend-service.dockerfile -t tcharlezin/front-end:1.0.1 .
+docker build --platform linux/x86_64 -f frontend-service.dockerfile -t tcharlezin/front-end:1.0.1 .
 docker push tcharlezin/front-end:1.0.1
 ```
 
 ## Logger
 ```
-docker build -f logger-service.dockerfile -t tcharlezin/logger-service:1.0.0 .
-docker push tcharlezin/logger-service:1.0.0
+docker build --platform linux/x86_64 -f logger-service.dockerfile -t tcharlezin/logger-service:1.0.1 .
+docker push tcharlezin/logger-service:1.0.1
 ```
 
 ## Broker
 ```
-docker build -f broker-service.dockerfile -t tcharlezin/broker-service:1.0.0 .
-docker push tcharlezin/broker-service:1.0.0
+docker build --platform linux/x86_64 -f broker-service.dockerfile -t tcharlezin/broker-service:1.0.1 .
+docker push tcharlezin/broker-service:1.0.1
 ```
 
 ## Authentication
 ```
-docker build -f authentication-service.dockerfile -t tcharlezin/authentication-service:1.0.0 .
+docker build --platform linux/x86_64 -f authentication-service.dockerfile -t tcharlezin/authentication-service:1.0.0 .
 docker push tcharlezin/authentication-service:1.0.0
 ```
 
 ## Listener
 ```
-docker build -f listener-service.dockerfile -t tcharlezin/listener-service:1.0.0 .
+docker build --platform linux/x86_64 -f listener-service.dockerfile -t tcharlezin/listener-service:1.0.0 .
 docker push tcharlezin/listener-service:1.0.0
 ```
 
 ## Mail
 ```
-docker build -f mail-service.dockerfile -t tcharlezin/mail-service:1.0.0 .
+docker build --platform linux/x86_64 -f mail-service.dockerfile -t tcharlezin/mail-service:1.0.0 .
 docker push tcharlezin/mail-service:1.0.0
+```
+
+## Caddy 
+```
+docker build --platform linux/x86_64 -f caddy.production.dockerfile -t tcharlezin/micro-caddy-production:1.0.0 .
+docker push tcharlezin/micro-caddy-production:1.0.0
 ```
 
 
@@ -87,4 +93,10 @@ docker stack rm myapp
 ```
 docker swarm leave
 docker swarm leave --force
+```
+
+## View the list of stack
+```
+sudo docker stack ps myapp
+sudo docker node ls
 ```
