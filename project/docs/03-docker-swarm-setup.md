@@ -1,8 +1,8 @@
 
 ## Caddy 
 ```
-docker build --platform linux/x86_64 -f caddy.production.dockerfile -t tcharlezin/micro-caddy-production:1.0.0 .
-docker push tcharlezin/micro-caddy-production:1.0.0
+docker build --platform linux/x86_64 -f caddy.production.dockerfile -t tcharlezin/micro-caddy-production:1.0.1 .
+docker push tcharlezin/micro-caddy-production:1.0.1
 ```
 
 
@@ -63,3 +63,12 @@ docker swarm leave --force
 sudo docker stack ps myapp
 sudo docker node ls
 ```
+
+
+# Deploying without downtime
+docker pull {IMAGE}
+docker service scale myapp_caddy=2
+docker service update --image tcharlezin/micro-caddy-production:1.0.1 myapp_caddy
+docker stack rm myapp
+docker stack deploy -c swarm.yml myapp
+docker node ps

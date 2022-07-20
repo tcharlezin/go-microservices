@@ -2,7 +2,7 @@ version: '3'
 
 services:
   caddy:
-    image: tcharlezin/micro-caddy-production:1.0.0
+    image: tcharlezin/micro-caddy-production:1.0.1
     deploy:
       mode: replicated
       replicas: 1
@@ -22,7 +22,7 @@ services:
       mode: replicated
       replicas: 1
     environment:
-      BROKER_URL: "http://broker.tcharlez.in"
+      BROKER_URL: "https://broker.tcharlez.in"
 
   broker-service:
     image: tcharlezin/broker-service:1.0.1
