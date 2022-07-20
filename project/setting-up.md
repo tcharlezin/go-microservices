@@ -1,6 +1,7 @@
 # Configuring the new server
 adduser tcharles
 usermod -aG sudo tcharles
+usermod -aG docker tcharles
 
 # Configuring the firewall
 ufw allow ssh
@@ -20,8 +21,8 @@ ufw status
 >>>  Exit and login with new user
 
 # Install docker
+sudo ls
 sudo apt-get update
-
 sudo apt upgrade
 
 sudo apt-get install \
@@ -57,6 +58,7 @@ A swarm  IP
 # Starting the swarm inside server
 sudo docker swarm init --advertise-addr 172.104.195.230
 
+docker swarm join --token SWMTKN-1-08udjth2w81nicdfa023au4pw4f9wg7j94qbogwytgjzla1aan-78uob5z3c0jhbtquut5yiwkc0 172.104.195.230:2377
 
 # Inside each server
 
@@ -66,6 +68,14 @@ sudo chown tcharles:tcharles swarm/
 cd swarm/
 mkdir caddy_data
 mkdir caddy_config
+mkdir db-data
+mkdir db-data/mongo
+mkdir db-data/postgres
 vi swarm.yml
 
 >>> Paste the caddy.production.dockerfile there
+
+
+```
+watch docker node ps
+```

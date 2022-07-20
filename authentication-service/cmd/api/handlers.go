@@ -101,7 +101,7 @@ func (app *Config) logRequestBroker(name, data string) error {
 	}
 
 	jsonData, _ := json.MarshalIndent(logRequest, "", "\t")
-	logServiceUrl := "http://broker-service/handle"
+	logServiceUrl := "http://broker-service:8080/handle"
 
 	request, err := http.NewRequest("POST", logServiceUrl, bytes.NewBuffer(jsonData))
 
